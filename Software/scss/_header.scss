@@ -1,0 +1,30 @@
+header{
+    background-color: #071d29;
+    margin-bottom: 30px;
+    div#navbarSupportedContent{
+        width: 70% !important;
+        .nav-item{
+            list-style: none;
+            a{
+                color: #fff;
+            }
+        }
+    }
+    nav{
+        padding: 0 5%;
+        .container-fluid{
+            display: flex;
+            @media screen and (max-width: 991px) {
+                flex-wrap: wrap;
+            }
+        }
+    }
+    .mobile.menu{
+        display: none;
+        @media screen and (max-width: 990px){
+            display: flex;
+        }
+    }
+}
+
+

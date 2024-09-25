@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "homs.css",
+	"sources": [
+		"../../../scss/home/homs.scss"
+	],
+	"sourcesContent": [
+		""
+	],
+	"names": [],
+	"mappings": ""
+}

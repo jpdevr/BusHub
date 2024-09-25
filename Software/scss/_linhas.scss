@@ -1,0 +1,111 @@
+.page-horario{
+    .container-fluid.content{
+        .content-page{
+            display: flex;
+            gap: 30px;
+            @media screen and (max-width:991px) {
+                flex-direction: column;
+                .mapa{
+                    width: 100%;
+                }
+                .linhas{
+                    width: 100%;
+                }
+            }
+        }
+        .mapa{
+            background: #cadd08;
+            border-radius: 15px;
+            width: 70%;
+            padding: 1rem;
+            .content-mapa{
+                min-height: 300px;
+                .mapboxgl-control-container{
+                    min-height: 300px;
+                }
+                img{
+                    width: 100%;
+                }
+            }
+            .title{
+                font-size: 24px;
+                color: #fff;
+            }
+        }
+        .linhas{
+            width: 30%;
+            border: 15px solid #cadd08;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            background: #cadd08;
+            .content{
+                width: 100%;
+                height: 100%;
+                padding: 1rem;
+                border-radius: 15px;
+                background: #fff;
+            }
+            h1{
+                font-size: 24px;
+                color: #fff;
+                background: #cadd08;
+            }
+        }
+        .search-content{
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            align-items: center;
+            .search-input{
+                background: #fff;
+                border-radius: 8px;
+                width: 50%;
+                display: flex;
+                align-items: center;
+                i.search{
+                    svg{
+                        transform: rotate(90deg);
+                        
+                    }
+                }
+                .form-control{
+                    outline: none !important;
+                    width: 80%;
+                    border: none;
+                    padding: 0.5rem;
+                    max-height: 30px;
+                    border-radius: 5px;
+                }
+            }
+        }
+        .infos{
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            i{
+                width: 2rem;
+                height: 2rem;
+            }
+            p{
+                font-size: 14px;
+                color: #fff;
+                margin: 0;
+            }
+        }
+    }
+}
+.fa-plus{
+    color: #fff;
+}
+.minus.icon{
+    &::before{
+        color: #fff;
+        font-weight: 600;
+        content: "_";
+        font-size: 28px;
+        position: relative;
+        top: -14px;
+    }
+}

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset='utf-8'>
+    <meta name="author" content="etec-c">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <title>Cadastro de Horários</title>
+
+    <script src="https://kit.fontawesome.com/c8de44c573.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" href="../assets/css/admin.css">
+     <style>
+      @font-face {
+          font-family: Made Tommy;
+        
+          src: url(../Madetommy.otf);
+      }
+  </style>
+</head>
+
+<body class="page-admin" >
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+          <!-- <a href="../index.html">
+            <img src="../images/icone_v1.png" width="35" height="45" class="d-inline-block align-top" alt="">
+          </a> -->
+          <a href="">
+            <img src="../images/icone_v1.png" width="35" height="45" class="d-inline-block align-top" alt="">
+          </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+
+            <div class="container text-center grid gap-0 column-gap-3">
+              <div class="row align-items-start">
+
+                <div class="col g-col-6">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="cadastromotorista.html">Cadastro Motorista</a>
+                  </li>
+                </div>
+
+                <div class="col g-col-6">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="cadastrohorario.html">Cadastro Horário</a>
+                  </li>
+                </div>
+
+                <div class="col g-col-6">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="cadastrolinhas.html">Cadastro Linhas</a>
+                  </li>
+                </div>
+
+                <div class="col g-col-6">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="cadastroponto.html">Cadastro Ponto</a>
+                  </li>
+                </div>
+
+
+              </div>
+            </div>
+        </div>
+
+        </ul>
+      </div>
+     
+
+    </nav>
+  </header>
+
+</div>
+
+<div class = "container">
+    <div class = "box">
+
+
+        <div class = "row">
+
+          <div class = "col-sm-5">
+            <div >
+              <div class="row">
+
+                <div class="col-sm-6">
+              <h3>
+                <Label class = "labelcampo">
+                  Nome da linha
+                </Label>
+                <select class="custom-select" id="lista_linha">
+    
+                </select>
+              </h3>
+            </div>
+            </div>
+            </div>
+        </div>
+
+          
+          <div class = "col-sm-2">      
+                          <button type="button" class="btn-success" onclick="carregarhorarios()">
+                      <i class="icon search">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+                          viewBox="0,0,256,256">
+                          <g fill-opacity="0.45098" fill="#000000" fill-rule="nonzero" stroke="none" stroke-width="1"
+                            stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray=""
+                            stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none"
+                            text-anchor="none" style="mix-blend-mode: normal">
+                            <g transform="scale(2,2)">
+                              <path
+                                d="M52.34961,14.40039c-9.725,0 -19.44961,3.69961 -26.84961,11.09961c-14.8,14.8 -14.8,38.89922 0,53.69922c7.4,7.4 17.10039,11.10156 26.90039,11.10156c9.8,0 19.50039,-3.70156 26.90039,-11.10156c14.7,-14.8 14.69844,-38.89922 -0.10156,-53.69922c-7.4,-7.4 -17.12461,-11.09961 -26.84961,-11.09961zM52.30078,20.30078c8.2,0 16.39961,3.09844 22.59961,9.39844c12.5,12.5 12.49961,32.80078 0.09961,45.30078c-12.5,12.5 -32.80078,12.5 -45.30078,0c-12.5,-12.5 -12.5,-32.80078 0,-45.30078c6.2,-6.2 14.40156,-9.39844 22.60156,-9.39844zM52.30078,26.30078c-6.9,0 -13.40078,2.69922 -18.30078,7.69922c-4.7,4.7 -7.29961,10.80039 -7.59961,17.40039c-0.1,1.7 1.20039,2.99961 2.90039,3.09961h0.09961c1.6,0 2.9,-1.30039 3,-2.90039c0.2,-5.1 2.29883,-9.80039 5.79883,-13.40039c3.8,-3.8 8.80156,-5.89844 14.10156,-5.89844c1.7,0 3,-1.3 3,-3c0,-1.7 -1.3,-3 -3,-3zM35,64c-1.65685,0 -3,1.34315 -3,3c0,1.65685 1.34315,3 3,3c1.65685,0 3,-1.34315 3,-3c0,-1.65685 -1.34315,-3 -3,-3zM83.36328,80.5c-0.7625,0 -1.5125,0.30039 -2.0625,0.90039c-1.2,1.2 -1.2,3.09922 0,4.19922l2.5,2.5c-0.6,1.2 -0.90039,2.50039 -0.90039,3.90039c0,2.4 0.89961,4.70039 2.59961,6.40039l12.80078,12.59961c1.8,1.8 4.09844,2.69922 6.39844,2.69922c2.3,0 4.60039,-0.89961 6.40039,-2.59961c3.5,-3.5 3.5,-9.19922 0,-12.69922l-12.79883,-12.80078c-1.7,-1.7 -4.00039,-2.59961 -6.40039,-2.59961c-1.4,0 -2.70039,0.30039 -3.90039,0.90039l-2.5,-2.5c-0.6,-0.6 -1.37422,-0.90039 -2.13672,-0.90039zM91.90039,88.90039c0.8,0 1.59961,0.30039 2.09961,0.90039l12.69922,12.69922c1.2,1.2 1.2,3.09922 0,4.19922c-1.2,1.2 -3.09922,1.2 -4.19922,0l-12.69922,-12.59961c-0.6,-0.6 -0.90039,-1.39922 -0.90039,-2.19922c0,-0.8 0.30039,-1.59961 0.90039,-2.09961c0.6,-0.6 1.29961,-0.90039 2.09961,-0.90039z">
+                              </path>
+                            </g>
+                          </g>
+                        </svg>
+                      </i>
+                    </button>
+                  </div>
+
+
+        <div class = "col-sm-2">
+          <div class = labelcampo>
+            Horários existentes
+          </div>
+          <select class="custom-select" id="lista_hora">
+    
+          </select>
+      </div>
+
+      </div>
+
+    </div>
+</div>
+
+
+
+
+<div class = "container">
+  <div class = "box">
+
+      <div class = "row"> 
+
+        <div class = "col-sm-3">
+          <div class = labelcampo>
+            Dia
+          </div>
+          <select class="custom-select" id="lista_tipo">
+            <option value="Segunda a sexta">Segunda a sexta</option>
+            <option value="Sábado">Sábado</option>
+            <option value="Domingos e feriados">Domingos e feriados</option>     
+          </select>
+        </div>
+
+        <div class = "col-sm-4">
+            <div >
+                <Label class = "labelcampo">
+                    Adicionar/editar um horário
+                </Label>
+                <form role = "search">
+                    <input id="hora" class="form-control" type="time" placeholder="ex: 05:00" aria-label="Search">
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class = "container" style = "color:black;">
+
+<div class="botoes container text-left mt-3 mb-3">
+<button  style="background-color:#003050; color: #ffffff;" type="button" class="btn" onclick="excluir()">Excluir</button>
+<button style="background-color:#00a6b6; color: #ffffff;" type="button" class="btn" onclick="gravar()">Inserir</button>
+</div>
+
+</div>
+
+<footer>
+  © ETEC Atibaia - Todos os direitos reservados
+</footer>
+
+<script>
+  window.addEventListener("load", (event) => {
+      carregarlinhas();
+    });
+
+    function carregarlinhas() {
+      var url = '../php/dadoslinhas.php'
+      var lista = ''
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+
+          lista = ''
+          for (let item in data) {
+            lista += `
+                      <option>0`+ data[item].tb02_cod_linha + ` : ` + data[item].tb02_nome + `</option>`
+          }
+          document.getElementById("lista_linha").innerHTML = lista
+
+        })
+    }
+
+    function carregarhorarios() {
+      var nome = document.getElementById("lista_linha").value;
+      var cod = document.getElementById("lista_linha").value;
+          var url = '../php/horarios.php?cod='+ cod.slice(0,3) + '&nome='+ nome.slice(5);
+          var lista = ''
+
+          fetch(url)
+              .then((response) => response.json())
+              .then((data) => {
+
+                  lista = ''
+                  for (let item in data) {
+                      lista +=`
+                      <option>`+ data[item].tb04_horario +` - `+ data[item].tb04_tipo + `</option>`
+                  }
+                  document.getElementById("lista_hora").innerHTML = lista
+
+              })
+      }
+
+      function gravar() {
+          var cod = document.getElementById("lista_linha").value;
+          var nome = document.getElementById("lista_linha").value;
+          var tipo = document.getElementById("lista_tipo").value;
+          var hora = document.getElementById("hora").value;
+          var url = "";
+  
+          url = '../php/inserir_hora.php?cod=' + cod.slice(0,3)+ '&nome=' + nome.slice(5) + '&tipo=' + tipo + '&hora=' + hora;
+
+          fetch(url)
+                    .then((response) => response.json())
+                    .then((data) => {
+                    msg = data.mensagem;
+                    alert(msg);
+                    
+        })
+   
+    }
+    function excluir(){
+      var cod = document.getElementById("lista_linha").value;
+      var tipo = document.getElementById("lista_tipo").value;
+      var hora = document.getElementById("hora").value;
+      var nome = document.getElementById("lista_linha").value;
+var url = "";
+
+url = '../php/excluir_hora.php?cod=' + cod.slice(0,3)+ '&tipo=' + tipo + '&hora=' + hora + '&nome=' + nome.slice(5);
+
+fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+    msg = data.mensagem;
+    alert(msg);
+    $("#hora").val("");
+  })
+  
+    }
+</script>
+</body>
+<script src="./assets/js/menu.js"></script>
+
+</style>
+
+</html>

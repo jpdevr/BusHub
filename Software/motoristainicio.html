@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-widht", initial-scale="1.0">
+	<title>Mapa Motorista</title>
+   
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+    <style>
+        #map {
+            width:100%;
+            height:100vh;
+        }
+    </style>
+    
+</head>
+
+<body>
+
+    <div id="map"> </div>
+
+</body>
+
+</html>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<script>
+    // Personalizar css no mapa
+    let myCustomColourUser = 'background-url: transparent;'
+    const markerHtml = `
+        `
+
+    // Coordenadas do Ponta A - Táxi
+    const coordTaxi = [-23.11827170197528,-46.58109044645872];
+    // Coordenadas do Ponta B - Usuário
+    const coordUser = [-23.136630856640757, -46.588254017514956];
+
+    // Iniciar o mapa com coordenadas do ponto A
+    
+    const map = L.map('map').setView([ -23.11827170197528,-46.58109044645872 ], 29);
+    
+
+    L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png').addTo(map);
+
+
+    // Personalizar Ponto na mapa com imagem do táxi.
+    const taxiIcon = L.icon({
+        className: "taxi-pointers",
+        iconUrl: './imagem/bus.png',
+        iconSize: [45, 45]
+    })
+    const marker = L.marker(coordTaxi, { icon: taxiIcon }).addTo(map);
+
+    function startService () {
+        // Array de coordenadas. Simula o táxi enviando a localização para o APP.
+        const latlng = [
+            { lat: -23.11827170197528, lng: -46.58109044645872 },
+            { lat: -23.12387203089871, lng: -46.58417360365159 },
+            { lat: -23.126850776329494, lng: -46.58486441934614 },
+            { lat: -23.129586740195467, lng: -46.585954340562246 },
+            { lat: -23.132796235583097, lng: -46.5872854813801 },
+            { lat: -23.136630856640757, lng: -46.588254017514956 }
+
+        ]
+
+       // Personalizar Ponto na mapa com imagem do Usuário.
+        const icon = L.divIcon({
+            className: "pointers",
+            iconAnchor: [0, 24],
+            labelAnchor: [-6, 0],
+            popupAnchor: [0, -36],
+            html: `<span style="${markerHtml}${myCustomColourUser}" />`
+        })
+        var newMarker = L.marker([coordUser[0], coordUser[1]], { icon }).addTo(map);
+
+        // Identifica a melhor rota para iniciar a viagem.
+        L.Routing.control({
+            waypoints: [
+                L.latLng(coordTaxi[0], coordTaxi[1]),
+                L.latLng(coordUser[0], coordUser[1])
+            ]
+        }).on('routesfound', function (e) {
+            // Loop de coordenadas. Simula o táxi enviando a localização para o APP.
+            latlng.forEach(function (coord, index) {
+                btnInit.addEventListener('click', function(){
+                    setTimeout(function () {
+                        marker.setLatLng([coord.lat, coord.lng]);
+                        
+                    }, 8000 * index)
+        
+                });
+            })
+
+        }).addTo(map);
+    };
+
+    startService()
+    var btnInit = document.createElement("button");
+    btnInit.className = "iniciar";
+    btnInit.innerHTML = "Iniciar";
+    setInterval(() => {
+        var tableCoord = document.querySelector(".leaflet-routing-alt");
+        tableCoord.appendChild(btnInit);
+        
+    }, 3000);
+    
+
+</script>
+<script>
+    
+
+</script>
+<!-- <script>
+
+    // Inicialização do mapa 
+
+    // var map = L.map('map').setView([ -23.11827170197528,-46.58109044645872 ], 16);
+    
+    // camada osm
+        var osm=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+
+        osm.addTo(map)
+
+       // onibus
+
+    //    var taxiIcon = L.icon({
+    //     iconUrl:'imagem/bus.png',
+    //     iconSize:[70,70]
+    //    })
+
+        // Marcador
+        var singleMarker = L.marker([-23.11827170197528,-46.58109044645872], {icon: taxiIcon}); 
+        var popup = singleMarker.bindPopup("Atibaia").openPopup()
+        popup.addTo(map)
+
+
+        L.Routing.control({
+          waypoints: [
+    
+        L.latLng(-23.11827170197528,-46.58109044645872),
+        L.latLng(-23.12387203089871,-46.58417360365159),
+        L.latLng(-23.126850776329494,-46.58486441934614),
+        L.latLng(-23.129586740195467,-46.585954340562246),
+        L.latLng(-23.132796235583097,-46.5872854813801),
+        L.latLng(-23.136630856640757,-46.588254017514956),
+    ]
+    }).on('routesfound', function (e) {
+            // Loop de coordenadas. Simula o táxi enviando a localização para o APP.
+            latLng.forEach(function (coord, index) {
+                setTimeout(function () {
+                    marker.setLatLng([coord.lat, coord.lng]);
+                    // Identifica o final da viagem.
+                    if (coord.lat === coordUser[0] && coord.lng === coordUser[1]) {
+                        alert('Seu táxi acabou de chegar!')
+                    }
+                }, 1000 * index)
+            })
+
+        }).addTo(map);
+
+</script> -->

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset='utf-8'>
+    <meta name="author" content="etec-c">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <title>Linhas</title>
+    <link rel="icon" href="../images/bushubico.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/c8de44c573.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/starter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body class="page-horario mapa">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+         <a href="../index.html">
+           <img src="images/icone_v1.png" width="35" height="45" class="d-inline-block align-top" alt="">
+         </a>
+
+         <div class="container text-center grid gap-0 column-gap-3 menu-desktop d-none d-lg-flex">
+           <div class="row align-items-start">
+
+             <div class="col g-col-6">
+               <li class="nav-item list-unstyled">
+                 <a class="nav-link active text-white" aria-current="page" href="mapa.html">Mapa</a>
+               </li>
+             </div>
+
+             <div class="col g-col-6">
+               <li class="nav-item list-unstyled">
+                 <a class="nav-link active text-white" aria-current="page" href="linhas.html">Linhas</a>
+               </li>
+             </div>
+
+             <div class="col g-col-6">
+               <li class="nav-item list-unstyled">
+                 <a class="nav-link active text-white" href="horarios.html">Horários</a>
+               </li>
+             </div>
+
+           </div>
+         </div>
+
+        <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+         </button>
+        </ul>
+      </div>
+      </div>
+
+    </nav>
+  </header>
+
+<main>
+  <section class="container-fluid content">
+    <div class="content-page">
+      <div class="mapa">
+        <h4 class="title">
+          <select class="custom-select" id="lista_linha" style="max-width: 350px;">
+        </select>
+        <button type="button" class="btn btn-success" onclick="selectlinhas()"><i class="fa-solid fa-plus"></i></button>
+      </h4>
+
+        <div class="content-mapa">
+          <div id="map" style=" width: 97%;height: 450px;">.</div>
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+        <div class="linhas" style="color: black;" id="info-box">
+
+          <h1>Itinerário</h1>
+          <div class="content" id="rota" style ="overflow-y: scroll;">
+
+          </div>
+        </div>
+
+      </div>
+  </section>
+
+
+</main>
+<footer>
+  © ETEC Atibaia - Todos os direitos reservados
+</footer>
+<script>
+var map;
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYnVzaHViIiwiYSI6ImNsaXZvem04ODA5dXkzaGxtbXBvYWVnODYifQ.3eOoXhU-ZDfK_nnBzf6_fg';
+
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition)
+  } else {
+    console.log("Geolocation is not supported by this browser.")
+  }
+
+function showPosition(position) {
+
+        map = new mapboxgl.Map({
+        container: 'map', // container ID
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/mapbox/streets-v12', // style URL
+        center: [position.coords.longitude, position.coords.latitude], // starting position [lng, lat]
+        zoom: 14 // starting zoom
+    });
+
+}
+
+</script>
+
+</body>
+<div class="mobile-menu position-fixed">
+  <div class="row align-items-start">
+    <div class="close-item">
+      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px" baseProfile="basic"><path d="M37,45c-0.256,0-0.512-0.098-0.707-0.293L24,32.414L11.707,44.707c-0.391,0.391-1.023,0.391-1.414,0l-5-5	C5.105,39.52,5,39.265,5,39v-2c0-0.294,0.129-0.573,0.354-0.763l12.17-10.298L5.293,13.707C5.105,13.52,5,13.265,5,13v-2	c0-0.351,0.184-0.677,0.485-0.857l5-3c0.394-0.235,0.898-0.173,1.222,0.15L24,19.586L36.293,7.293	c0.324-0.324,0.829-0.386,1.222-0.15l5,3C42.816,10.323,43,10.649,43,11v2c0,0.265-0.105,0.52-0.293,0.707L30.476,25.938	l12.17,10.298C42.871,36.427,43,36.706,43,37v2c0,0.265-0.105,0.52-0.293,0.707l-5,5C37.512,44.902,37.256,45,37,45z"/><polygon fill="#fff" points="42,37 29,24 42,11 37,6 24,19 11,6 6,11 19,24 6,37 11,42 24,29 37,42"/><path d="M37,43c-0.256,0-0.512-0.098-0.707-0.293L24,30.414L11.707,42.707c-0.391,0.391-1.023,0.391-1.414,0l-5-5	c-0.391-0.391-0.391-1.023,0-1.414L17.586,24L5.293,11.707c-0.391-0.391-0.391-1.023,0-1.414l5-5c0.391-0.391,1.023-0.391,1.414,0	L24,17.586L36.293,5.293c0.391-0.391,1.023-0.391,1.414,0l5,5c0.391,0.391,0.391,1.023,0,1.414L30.414,24l12.293,12.293	c0.391,0.391,0.391,1.023,0,1.414l-5,5C37.512,42.902,37.256,43,37,43z M24,28c0.256,0,0.512,0.098,0.707,0.293L37,40.586L40.586,37	L28.293,24.707c-0.391-0.391-0.391-1.023,0-1.414L40.586,11L37,7.414L24.707,19.707c-0.391,0.391-1.023,0.391-1.414,0L11,7.414	L7.414,11l12.293,12.293c0.391,0.391,0.391,1.023,0,1.414L7.414,37L11,40.586l12.293-12.293C23.488,28.098,23.744,28,24,28z"/></svg>
+    </div>
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" aria-current="page" href="mapa.html">Mapa</a>
+      </li>
+    </div>
+
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" aria-current="page" href="linhas.html">Linhas</a>
+      </li>
+    </div>
+
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" href="horarios.html">Horários</a>
+      </li>
+    </div>
+
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" href="cadastro.html">Admin</a>
+      </li>
+    </div>
+
+
+  </div>
+</div>
+<br>
+
+<script>
+  window.addEventListener("load", (event) => {
+          carregalinhas();
+      });
+
+    function carregalinhas() {
+          var url = 'php/dadoslinhas.php'
+          var lista = ''
+
+          fetch(url)
+              .then((response) => response.json())
+              .then((data) => {
+
+                  lista = ''
+                  for (let item in data) {
+                      lista +=`
+                      <option>`+ data[item].tb02_cod_linha +` : `+ data[item].tb02_nome + `</option>`
+                  }
+                  document.getElementById("lista_linha").innerHTML = lista
+
+              })
+      }
+
+      function selectlinhas(){
+        var nome = document.getElementById("lista_linha").value;
+        var cod = document.getElementById("lista_linha").value;
+        url = 'php/carrega_linhas.php?cod=' + cod.slice(0,3) + '&nome='+ nome.slice(6);
+        fetch(url)
+              .then((response) => response.json())
+              .then((data) => {
+                for(let item in data){
+                   link=decodeURIComponent(data[item].tb02_rotas);
+                  getMatch(link)
+
+             }
+              })
+
+      }
+
+      async function getMatch(link) {
+                    // Separate the radiuses with semicolons
+
+                    // Create the query${coordinates}
+                    const query = await fetch(
+                      link,
+                      { method: 'GET' }
+                    );
+                    console.log(link);
+                    const response = await query.json();
+                    // Handle errors
+
+                    if (response.code !== 'Ok') {
+                      alert(
+                        `${response.code} - ${response.message}.\n\nFor more information: https://docs.mapbox.com/api/navigation/map-matching/#map-matching-api-errors`
+                      );
+                      return;
+                    }
+                    const coords = response.matchings[0].geometry;
+                    // Draw the route on the map
+                    addRoute(coords);
+                    getInstructions(response.matchings[0]);
+
+                  }
+
+                  function addRoute(coords) {
+                  // If a route is already loaded, remove it
+                  if (map.getSource('route')) {
+                    map.removeLayer('route');
+                    map.removeSource('route');
+                  } else {
+                    // Add a new layer to the map
+                    map.addLayer({
+                      id: 'route',
+                      type: 'line',
+                      source: {
+                        type: 'geojson',
+                        data: {
+                          type: 'Feature',
+                          properties: {},
+                          geometry: coords
+                        }
+                      },
+                      layout: {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                      },
+                      paint: {
+                        'line-color': '#00a6b6',
+                        'line-width': 8,
+                        'line-opacity': 0.8
+                      }
+                    });
+                  }
+                }
+                function getInstructions(data) {
+  // Target the sidebar to add the instructions
+  const directions = document.getElementById('rota');
+  let tripDirections = '';
+  // Output the instructions for each step of each leg in the response object
+  for (const leg of data.legs) {
+    const steps = leg.steps;
+    for (const step of steps) {
+      tripDirections += `<li>${step.maneuver.instruction}</li>`;
+    }
+  }
+  directions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
+    data.duration / 60
+  )} min.</strong></p><ol>${tripDirections}</ol>`;
+}
+
+
+</script>
+<script type='text/javascript' src="map.js"></script>
+<script src="assets/js/menu.js"></script>
+<style>
+  @font-face {
+      font-family: Made Tommy;
+      src: url(Madetommy.otf);
+  }
+</style>
+
+</html>

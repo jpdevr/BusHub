@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset='utf-8'>
+    <meta name="author" content="etec-c">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <title>Horários</title>
+
+    <script src="https://kit.fontawesome.com/c8de44c573.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="../images/bushubico.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/starter.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <style>
+      div#map{
+        min-height: 300px;
+      }
+      .mapboxgl-control-container{
+        height: 100%;
+      }
+    </style>
+</head>
+
+<body class="horarios">
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+         <a href="../index.html">
+           <img src="images/icone_v1.png" width="35" height="45" class="d-inline-block align-top" alt="">
+         </a>
+
+         <div class="container text-center grid gap-0 column-gap-3 menu-desktop d-none d-lg-flex">
+           <div class="row align-items-start">
+
+             <div class="col g-col-6">
+               <li class="nav-item list-unstyled">
+                 <a class="nav-link active text-white" aria-current="page" href="mapa.html">Mapa</a>
+               </li>
+             </div>
+
+             <div class="col g-col-6">
+               <li class="nav-item list-unstyled">
+                 <a class="nav-link active text-white" aria-current="page" href="linhas.html">Linhas</a>
+               </li>
+             </div>
+
+             <div class="col g-col-6">
+               <li class="nav-item list-unstyled">
+                 <a class="nav-link active text-white" href="horarios.html">Horários</a>
+               </li>
+             </div>
+
+           </div>
+         </div>
+
+        <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+         </button>
+        </ul>
+      </div>
+      </div>
+
+    </nav>
+  </header>
+
+<main>
+  <div class="section">
+
+    <div class="search content-left">
+      <div class="pesquisa">
+
+        <div class="search-input">
+           <h4>
+        <select class="custom-select" id="lista_linha" style="max-width: 270px;">
+          </select>
+        </h4>
+          <i class="icon search" ></i>
+          <button type="button" class="btn-success" onclick="carregarhorarios()">
+            <i class="icon search">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+                viewBox="0,0,256,256">
+                <g fill-opacity="0.45098" fill="#000000" fill-rule="nonzero" stroke="none" stroke-width="1"
+                  stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray=""
+                  stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none"
+                  text-anchor="none" style="mix-blend-mode: normal">
+                  <g transform="scale(2,2)">
+                    <path
+                      d="M52.34961,14.40039c-9.725,0 -19.44961,3.69961 -26.84961,11.09961c-14.8,14.8 -14.8,38.89922 0,53.69922c7.4,7.4 17.10039,11.10156 26.90039,11.10156c9.8,0 19.50039,-3.70156 26.90039,-11.10156c14.7,-14.8 14.69844,-38.89922 -0.10156,-53.69922c-7.4,-7.4 -17.12461,-11.09961 -26.84961,-11.09961zM52.30078,20.30078c8.2,0 16.39961,3.09844 22.59961,9.39844c12.5,12.5 12.49961,32.80078 0.09961,45.30078c-12.5,12.5 -32.80078,12.5 -45.30078,0c-12.5,-12.5 -12.5,-32.80078 0,-45.30078c6.2,-6.2 14.40156,-9.39844 22.60156,-9.39844zM52.30078,26.30078c-6.9,0 -13.40078,2.69922 -18.30078,7.69922c-4.7,4.7 -7.29961,10.80039 -7.59961,17.40039c-0.1,1.7 1.20039,2.99961 2.90039,3.09961h0.09961c1.6,0 2.9,-1.30039 3,-2.90039c0.2,-5.1 2.29883,-9.80039 5.79883,-13.40039c3.8,-3.8 8.80156,-5.89844 14.10156,-5.89844c1.7,0 3,-1.3 3,-3c0,-1.7 -1.3,-3 -3,-3zM35,64c-1.65685,0 -3,1.34315 -3,3c0,1.65685 1.34315,3 3,3c1.65685,0 3,-1.34315 3,-3c0,-1.65685 -1.34315,-3 -3,-3zM83.36328,80.5c-0.7625,0 -1.5125,0.30039 -2.0625,0.90039c-1.2,1.2 -1.2,3.09922 0,4.19922l2.5,2.5c-0.6,1.2 -0.90039,2.50039 -0.90039,3.90039c0,2.4 0.89961,4.70039 2.59961,6.40039l12.80078,12.59961c1.8,1.8 4.09844,2.69922 6.39844,2.69922c2.3,0 4.60039,-0.89961 6.40039,-2.59961c3.5,-3.5 3.5,-9.19922 0,-12.69922l-12.79883,-12.80078c-1.7,-1.7 -4.00039,-2.59961 -6.40039,-2.59961c-1.4,0 -2.70039,0.30039 -3.90039,0.90039l-2.5,-2.5c-0.6,-0.6 -1.37422,-0.90039 -2.13672,-0.90039zM91.90039,88.90039c0.8,0 1.59961,0.30039 2.09961,0.90039l12.69922,12.69922c1.2,1.2 1.2,3.09922 0,4.19922c-1.2,1.2 -3.09922,1.2 -4.19922,0l-12.69922,-12.59961c-0.6,-0.6 -0.90039,-1.39922 -0.90039,-2.19922c0,-0.8 0.30039,-1.59961 0.90039,-2.09961c0.6,-0.6 1.29961,-0.90039 2.09961,-0.90039z">
+                    </path>
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </button>
+        </div>
+
+      <div >
+        <div class ="mapa">
+          <h2 id="linha" style ="color: #ffffff">Selecione uma linha</h2>
+
+          <div class="superior" style=" width: 97%;height: 75%; float:left;margin: 10px ;">
+            <div id="map"></div>
+          </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="horarios content-right">
+      <h2>Tabela:</h2>
+      <p></p>
+      <table class="table d-flex flex-column w-100" style =" min-height: 500px; max-height: 500px; overflow-y: scroll;">
+        <thead>
+          <tr class="d-flex justify-content-evenly">
+            <th data-tab="tabelasegunda" >Segunda a sexta</th>
+            <th data-tab="tabelasabado"  class="ativo">Sábados</th>
+            <th data-tab="tabeladomingo" >Domingos e feriados</th>
+          </tr>
+        </thead>
+
+        <tbody id="tabelasegunda" class="">
+        </tbody>
+
+        <tbody id="tabelasabado" class="ativo">
+    </tbody>
+
+        <tbody id="tabeladomingo" class="">
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+  <footer>
+    <div class="content">
+      © ETEC Atibaia - Todos os direitos reservados
+    </div>
+  </footer>
+</main>
+<div class="mobile-menu position-fixed">
+  <div class="row align-items-start">
+    <div class="close-item">
+      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px" baseProfile="basic"><path d="M37,45c-0.256,0-0.512-0.098-0.707-0.293L24,32.414L11.707,44.707c-0.391,0.391-1.023,0.391-1.414,0l-5-5	C5.105,39.52,5,39.265,5,39v-2c0-0.294,0.129-0.573,0.354-0.763l12.17-10.298L5.293,13.707C5.105,13.52,5,13.265,5,13v-2	c0-0.351,0.184-0.677,0.485-0.857l5-3c0.394-0.235,0.898-0.173,1.222,0.15L24,19.586L36.293,7.293	c0.324-0.324,0.829-0.386,1.222-0.15l5,3C42.816,10.323,43,10.649,43,11v2c0,0.265-0.105,0.52-0.293,0.707L30.476,25.938	l12.17,10.298C42.871,36.427,43,36.706,43,37v2c0,0.265-0.105,0.52-0.293,0.707l-5,5C37.512,44.902,37.256,45,37,45z"/><polygon fill="#fff" points="42,37 29,24 42,11 37,6 24,19 11,6 6,11 19,24 6,37 11,42 24,29 37,42"/><path d="M37,43c-0.256,0-0.512-0.098-0.707-0.293L24,30.414L11.707,42.707c-0.391,0.391-1.023,0.391-1.414,0l-5-5	c-0.391-0.391-0.391-1.023,0-1.414L17.586,24L5.293,11.707c-0.391-0.391-0.391-1.023,0-1.414l5-5c0.391-0.391,1.023-0.391,1.414,0	L24,17.586L36.293,5.293c0.391-0.391,1.023-0.391,1.414,0l5,5c0.391,0.391,0.391,1.023,0,1.414L30.414,24l12.293,12.293	c0.391,0.391,0.391,1.023,0,1.414l-5,5C37.512,42.902,37.256,43,37,43z M24,28c0.256,0,0.512,0.098,0.707,0.293L37,40.586L40.586,37	L28.293,24.707c-0.391-0.391-0.391-1.023,0-1.414L40.586,11L37,7.414L24.707,19.707c-0.391,0.391-1.023,0.391-1.414,0L11,7.414	L7.414,11l12.293,12.293c0.391,0.391,0.391,1.023,0,1.414L7.414,37L11,40.586l12.293-12.293C23.488,28.098,23.744,28,24,28z"/></svg>
+    </div>
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" aria-current="page" href="mapa.html">Mapa</a>
+      </li>
+    </div>
+
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" aria-current="page" href="linhas.html">Linhas</a>
+      </li>
+    </div>
+
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" href="horarios.html">Horários</a>
+      </li>
+    </div>
+
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" href="cadastro.html">Admin</a>
+      </li>
+    </div>
+
+
+  </div>
+</div>
+<script>
+
+    window.addEventListener("load", (event) => {
+      carregarlinhas();
+    });
+
+    function carregarlinhas() {
+      var url = 'php/dadoslinhas.php'
+      var lista = ''
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+
+          lista = ''
+          for (let item in data) {
+            lista += `
+                      <option>0`+ data[item].tb02_cod_linha + ` : ` + data[item].tb02_nome + `</option>`
+          }
+          document.getElementById("lista_linha").innerHTML = lista
+
+        })
+    }
+    function carregarhorarios() {
+
+      nome = document.getElementById("lista_linha").value;
+      document.getElementById("linha").innerHTML = nome;
+      var tabelasabado = "";
+      var tabeladomingo = "";
+      var tabelasegunda= "";
+
+      cod = document.getElementById("lista_linha").value;
+          var url = 'php/horarios.php?cod='+ cod.slice(0,3) + '&nome='+ nome.slice(5);
+
+          fetch(url)
+              .then((response) => response.json())
+              .then((data) => {
+              for(let item in data){
+
+              if(data[item].tb04_tipo == "Sábado"){
+                tabelasabado += `
+                <tr class="d-flex justify-content-evenly">
+            <td class="ativo">`+data[item].tb04_cod_linha+`</td>
+            <td class="ativo">`+data[item].tb04_nome+`</td>
+            <td class="ativo">`+data[item].tb04_horario+`</td>
+          </tr>`
+
+              }else if(data[item].tb04_tipo == "Domingos e feriados"){
+                tabeladomingo += `
+                <tr class="d-flex justify-content-evenly">
+            <td class="ativo">`+data[item].tb04_cod_linha+`</td>
+            <td class="ativo">`+data[item].tb04_nome+`</td>
+            <td class="ativo">`+data[item].tb04_horario+`</td>
+          </tr>`
+
+              }else{
+                tabelasegunda += `
+                <tr class="d-flex justify-content-evenly">
+            <td class="ativo">`+data[item].tb04_cod_linha+`</td>
+            <td class="ativo">`+data[item].tb04_nome+`</td>
+            <td class="ativo">`+data[item].tb04_horario+`</td>
+          </tr>`
+
+              }}
+              document.getElementById("tabelasegunda").innerHTML = tabelasegunda;
+              document.getElementById("tabeladomingo").innerHTML = tabeladomingo;
+              document.getElementById("tabelasabado").innerHTML = tabelasabado;
+
+      })
+
+        url = 'php/carrega_linhas.php?cod=' + cod.slice(0,4) + '&nome='+ nome.slice(6);
+        fetch(url)
+              .then((response) => response.json())
+              .then((data) => {
+                for(let item in data){
+                   link=decodeURIComponent(data[item].tb02_rotas);
+                  getMatch(link)
+
+             }
+              })
+    }
+    async function getMatch(link) {
+                    // Separate the radiuses with semicolons
+
+                    // Create the query${coordinates}
+                    const query = await fetch(
+                      link,
+                      { method: 'GET' }
+                    );
+                    console.log(link);
+                    const response = await query.json();
+                    // Handle errors
+
+                    if (response.code !== 'Ok') {
+                      alert(
+                        `${response.code} - ${response.message}.\n\nFor more information: https://docs.mapbox.com/api/navigation/map-matching/#map-matching-api-errors`
+                      );
+                      return;
+                    }
+                    const coords = response.matchings[0].geometry;
+                    // Draw the route on the map
+                    addRoute(coords);
+                  }
+
+                  function addRoute(coords) {
+                   //If a route is already loaded, remove it
+                  if (map.getSource('route')) {
+                  map.removeLayer('route');
+                  map.removeSource('route');
+                  } else {
+                    // Add a new layer to the map
+                    map.addLayer({
+                      id: 'route',
+                      type: 'line',
+                      source: {
+                        type: 'geojson',
+                        data: {
+                          type: 'Feature',
+                          properties: {},
+                          geometry: coords
+                        }
+                      },
+                      layout: {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                      },
+                      paint: {
+                        'line-color': '#071d29',
+                        'line-width': 8,
+                        'line-opacity': 0.8
+                      }
+                    });
+                  }
+                }
+</script>
+</body>
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYnVzaHViIiwiYSI6ImNsaXZvem04ODA5dXkzaGxtbXBvYWVnODYifQ.3eOoXhU-ZDfK_nnBzf6_fg';
+
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition)
+  } else {
+    console.log("Geolocation is not supported by this browser.")
+  }
+
+  function showPosition(position) {
+
+      map = new mapboxgl.Map({
+      container: 'map', // container ID
+      // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      center: [position.coords.longitude, position.coords.latitude], // starting position [lng, lat]
+      zoom: 14 // starting zoom
+    });
+
+    var url = 'php/dadospontos.php'
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        for (let item in data.features) {
+          const el = document.createElement('div');
+          el.className = 'marker';
+          var ponto = new mapboxgl.Marker()
+            .setLngLat([data.features[item].geometry.coordinates[0], data.features[item].geometry.coordinates[1]])
+            .setPopup(
+              new mapboxgl.Popup({
+                offset: 10
+              }) // add popups
+              .setHTML(
+                `<h4>${data.features[item].properties.name}</h4><p style = "color: black;">${data.features[item].properties.description}</p>`
+              )
+            )
+            .addTo(map);
+
+        }
+      })
+
+  }
+  
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script type="text/javascript" src="assets/js/table.js"></script>
+<script type='text/javascript' src="assets/js/map.js"></script>
+<script src="assets/js/menu.js"></script>
+
+<style>
+  @font-face {
+      font-family: Made Tommy;
+      src: url(Madetommy.otf);
+  }
+</style>
+
+</html>

@@ -1,0 +1,134 @@
+body.horarios{
+
+
+    header{
+        margin-bottom: 30px;
+    }
+    .section{
+        display: flex;
+        padding: 0 5%;
+        min-height: 88vh;
+        @media screen and (max-width: 991px) {
+            flex-direction: column;
+            .content-left, .content-right{
+                width: 100% !important;
+                margin: 0;
+                padding: 0 5%;
+            }
+            .content-left{
+                .pesquisa{
+                    margin: 0;
+                }
+            }
+        }
+        .content-left{
+            width: 40%;
+            .pesquisa{
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+                .search-input{
+                    background-color: #cadd08;  
+                    border-radius: 15px;
+                    width: 100%;
+                    display: flex;
+                    padding: 0.7rem;
+                    input{
+                        width: 90%;
+                    }
+                }
+                .mapa{
+                    height: 490px;  
+                    background-color: #cadd08;
+                    padding: 0.7rem;
+                    border-radius: 15px;
+                    clear: both;
+                    margin-top: 10px;
+                    width: 100%;
+                    .title{
+                        font-size: 24px;
+                    }
+                }
+            }
+
+            
+        }
+        .content-right{
+            width: 60%;
+            @media screen and (min-width: 992px) {
+                padding-left: 3rem;
+            }
+            .table td{
+                min-width: 120px;
+            }
+            .ativo{
+                background: #afb0af !important;
+                border: none !important;
+                display: block;
+            }
+            .ativo th, td{
+                background: #afb0af !important;
+                border: none !important;
+            }
+            
+            th,td{
+                cursor: pointer;
+            }
+            tbody:not(.ativo){
+                display: none;
+            }
+            thead{
+                th{
+                    width: 33.33%;
+                    text-align: center;
+                }
+            }
+        }
+        
+        
+        .tabela{
+        font-family: "Made Tommy";
+        color: black;
+        
+        margin-left: 25px;
+        }
+        .justify-content-evenly{
+            justify-content: space-evenly;
+        }
+        
+    }
+
+    .btn{
+        margin-left: 20px;
+    }
+    
+    .search-content{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 1rem;
+        align-items: center;
+        .search-input{
+            background: #fff;
+            border-radius: 8px;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            i.search{
+                svg{
+                    transform: rotate(90deg);
+                    
+                }
+            }
+            .form-control{
+                outline: none !important;
+                width: 80%;
+                border: none;
+                padding: 0.5rem;
+                max-height: 30px;
+                border-radius: 5px;
+            }
+
+        
+        }
+    }
+}

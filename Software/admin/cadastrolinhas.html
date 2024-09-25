@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset='utf-8'>
+    <meta name="author" content="etec-c">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <title>Cadastro de linhas</title>
+
+    <script src="https://kit.fontawesome.com/c8de44c573.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/starter.css">
+
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css"
+      type="text/css"
+    />
+    <style>
+        @font-face {
+            font-family: Made Tommy;
+            src: url(../Madetommy.otf);
+        }
+
+        .info-box {
+        /* position: absolute; */
+        margin: 20px;
+        width: 100%;
+        height: 270px;
+        top: 0;
+        padding: 20px;
+        background-color: #cadd08;
+        overflow-y: scroll;
+        font-family: Made Tommy;
+        color: white;
+        opacity: 100%;
+        }
+    </style>
+
+</head>
+
+<body class="mapa">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a href="">
+          <img src="../images/icone_v1.png" width="35" height="45" class="d-inline-block align-top" alt="">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <div class="container text-center grid gap-0 column-gap-3">
+              <div class="row align-items-start">
+
+                <div class="col g-col-6">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="cadastromotorista.html">Cadastro Motorista</a>
+                  </li>
+                </div>
+
+                <div class="col g-col-6">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="cadastrolinhas.html">Cadastro Linhas</a>
+                  </li>
+                </div>
+
+                <div class="col g-col-6">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="cadastroponto.html">Cadastro Ponto</a>
+                  </li>
+                </div>
+
+                <div class="col g-col-6">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="cadastrohorario.html">Cadastro Horários</a>
+                  </li>
+                </div>
+
+              </div>
+            </div>
+        </div>
+
+        </ul>
+      </div>
+
+
+    </nav>
+  </header>
+
+<main>
+  <div class="section">
+    <div class="mapa">
+      <p style ="margin: 10px; font-size: 25px;">Selecione pontos ou desenhe a  linha desejada</p>
+
+    <div class="superior" style=" width: 97%;height: 75%; float:left;margin: 10px ;">
+        <div  class="row" >
+            <div class="col-sm-6">
+            <Label class = "label">
+                Código
+            </Label>
+            <form role = "search">
+                <input class="form-control" type="text" placeholder="ex: 76" aria-label="Search" id="cod" maxlength="3">
+            </form>
+            </div>
+            <div class="col-sm-6">
+            <Label class = "label">
+                Nome da Linha
+            </Label>
+            <form role = "search">
+                <input class="form-control" type="text" placeholder="ex: Nova Atibaia" aria-label="Search" id="nome">
+            </form>
+            </div>
+        </div>
+        <br>
+        <div class="row" >
+            <div class="col-sm-4">
+            <Label class = "label" style="font-size: 100%;">
+                Coordenadas
+            </Label>
+            </div>
+            <div class="col-sm-5">
+            <div class = label>
+                Ponto de ônibus
+              </div>
+              <select class="custom-select" id="lista_ponto">
+              </select>
+            </div>
+              <div class="col-sm-1">
+            <button type="button" class="btn btn-success" onclick="addcoord()"><i class="fa-solid fa-plus"></i></button>
+                </div>
+
+        </div>
+
+
+<div class="row">
+        <div class="col-sm-5">
+        <div style="font-size: 100%;color: white;" id="cord"></div>
+    </div>
+    <div class="col-sm-6">
+      <div class="info-box">
+        <p>
+          Desenhe sua rota usando as ferramentas de desenho à direita.
+        </p>
+        <div id="directions"></div>
+      </div>
+  </div>
+  </div>
+<div class="row btns">
+  <div class="item">
+    <button style="background-color:#003050; color: #ffffff;" type="button" class="btn"
+      style="background-color: #071d29;" onclick="excluir()">Excluir</button>
+  </div>
+
+  <div class="item">
+    <button style="background-color:#00a6b6; color: #ffffff;" type="button" class="btn"
+      onclick="gravar()">Inserir</button>
+  </div>
+</div>
+</div>
+
+    </div>
+
+    <div class="linhas" style="color: black; background-color: #ffffff;">
+        <div id="map">
+        </div>
+
+    </div>
+
+  </div>
+</main>
+<footer>
+  <div class="content">
+    © ETEC Atibaia - Todos os direitos reservados
+  </div>
+</footer>
+<div class="mobile-menu position-fixed">
+  <div class="row align-items-start">
+    <div class="close-item">
+      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px" baseProfile="basic"><path d="M37,45c-0.256,0-0.512-0.098-0.707-0.293L24,32.414L11.707,44.707c-0.391,0.391-1.023,0.391-1.414,0l-5-5	C5.105,39.52,5,39.265,5,39v-2c0-0.294,0.129-0.573,0.354-0.763l12.17-10.298L5.293,13.707C5.105,13.52,5,13.265,5,13v-2	c0-0.351,0.184-0.677,0.485-0.857l5-3c0.394-0.235,0.898-0.173,1.222,0.15L24,19.586L36.293,7.293	c0.324-0.324,0.829-0.386,1.222-0.15l5,3C42.816,10.323,43,10.649,43,11v2c0,0.265-0.105,0.52-0.293,0.707L30.476,25.938	l12.17,10.298C42.871,36.427,43,36.706,43,37v2c0,0.265-0.105,0.52-0.293,0.707l-5,5C37.512,44.902,37.256,45,37,45z"/><polygon fill="#fff" points="42,37 29,24 42,11 37,6 24,19 11,6 6,11 19,24 6,37 11,42 24,29 37,42"/><path d="M37,43c-0.256,0-0.512-0.098-0.707-0.293L24,30.414L11.707,42.707c-0.391,0.391-1.023,0.391-1.414,0l-5-5	c-0.391-0.391-0.391-1.023,0-1.414L17.586,24L5.293,11.707c-0.391-0.391-0.391-1.023,0-1.414l5-5c0.391-0.391,1.023-0.391,1.414,0	L24,17.586L36.293,5.293c0.391-0.391,1.023-0.391,1.414,0l5,5c0.391,0.391,0.391,1.023,0,1.414L30.414,24l12.293,12.293	c0.391,0.391,0.391,1.023,0,1.414l-5,5C37.512,42.902,37.256,43,37,43z M24,28c0.256,0,0.512,0.098,0.707,0.293L37,40.586L40.586,37	L28.293,24.707c-0.391-0.391-0.391-1.023,0-1.414L40.586,11L37,7.414L24.707,19.707c-0.391,0.391-1.023,0.391-1.414,0L11,7.414	L7.414,11l12.293,12.293c0.391,0.391,0.391,1.023,0,1.414L7.414,37L11,40.586l12.293-12.293C23.488,28.098,23.744,28,24,28z"/></svg>
+    </div>
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" aria-current="page" href="mapa.html">Mapa</a>
+      </li>
+    </div>
+
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" aria-current="page" href="linhas.html">Linhas</a>
+      </li>
+    </div>
+
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" href="horarios.html">Horários</a>
+      </li>
+    </div>
+
+    <div class="col g-col-6">
+      <li class="nav-item list-unstyled">
+        <a class="nav-link active text-white" href="admin/cadastroponto.html">Admin</a>
+      </li>
+    </div>
+
+
+  </div>
+</div>
+
+<script>
+
+    window.addEventListener("load", (event) => {
+          carregarpontos();
+      });
+
+    function carregarpontos() {
+          var url = '../php/pontos.php'
+          var lista = ''
+
+          fetch(url)
+              .then((response) => response.json())
+              .then((data) => {
+
+                  lista = ''
+                  for (let item in data) {
+                      lista +=`
+                      <option>`+ data[item].tb03_cod_ponto +`: `+ data[item].tb03_nome + `</option>`
+                  }
+                  document.getElementById("lista_ponto").innerHTML = lista
+
+              })
+      }
+
+      function addcoord(){
+
+        const cord = document.getElementById("lista_ponto").value;
+        var cod= cord.charAt(0);
+        var url = "";
+
+        url = '../php/carregapontos.php?cod=' + cod
+
+        fetch(url)
+              .then((response) => response.json())
+              .then((data) => {
+                for(let item in data){
+                  // Create an "li" node:
+                  const node = document.createElement("p");
+
+                  // Create a text node:
+                  const textnode = document.createTextNode(data[item].tb03_coordx + data[item].tb03_coordy);
+
+                  // Append the text node to the "li" node:
+                  node.appendChild(textnode);
+
+                  // Append the "li" node to the list:
+                  document.getElementById("cord").appendChild(node);
+                }
+              })
+      }
+  </script>
+<script>
+  	mapboxgl.accessToken = 'pk.eyJ1IjoiYnVzaHViIiwiYSI6ImNsb2NyZHFobzAwbzQyaXBkaXU3bzc5aXQifQ.OXiZsQjGGf1zy_pEdU1UdA';
+
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(showPosition)
+} else {
+  console.log("Geolocation is not supported by this browser.")
+}
+
+function showPosition(position) {
+
+  const map = new mapboxgl.Map({
+      container: 'map', // container ID
+      // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      center: [position.coords.longitude, position.coords.latitude], // starting position [lng, lat]
+      zoom: 14 // starting zoom
+  });
+
+  const draw = new MapboxDraw({
+        // Instead of showing all the draw tools, show only the line string and delete tools
+        displayControlsDefault: false,
+        controls: {
+          line_string: true,
+          trash: true
+        },
+        // Set the draw mode to draw LineStrings by default
+        defaultMode: 'draw_line_string',
+        styles: [
+          // Set the line style for the user-input coordinates
+          {
+            'id': 'gl-draw-line',
+            'type': 'line',
+            'filter': [
+              'all',
+              ['==', '$type', 'LineString'],
+              ['!=', 'mode', 'static']
+            ],
+            'layout': {
+              'line-cap': 'round',
+              'line-join': 'round'
+            },
+            'paint': {
+              'line-color': '#00a6b6',
+              'line-dasharray': [0.2, 2],
+              'line-width': 2,
+              'line-opacity': 0.7
+            }
+          },
+          // Style the vertex point halos
+          {
+            'id': 'gl-draw-polygon-and-line-vertex-halo-active',
+            'type': 'circle',
+            'filter': [
+              'all',
+              ['==', 'meta', 'vertex'],
+              ['==', '$type', 'Point'],
+              ['!=', 'mode', 'static']
+            ],
+            'paint': {
+              'circle-radius': 12,
+              'circle-color': '#FFF'
+            }
+          },
+          // Style the vertex points
+          {
+            'id': 'gl-draw-polygon-and-line-vertex-active',
+            'type': 'circle',
+            'filter': [
+              'all',
+              ['==', 'meta', 'vertex'],
+              ['==', '$type', 'Point'],
+              ['!=', 'mode', 'static']
+            ],
+            'paint': {
+              'circle-radius': 8,
+              'circle-color': '#00a6b6'
+            }
+          }
+        ]
+      });
+
+      // Add the draw tool to the map
+      map.addControl(draw);
+
+      // Add create, update, or delete actions
+      map.on('draw.create', updateRoute);
+      map.on('draw.update', updateRoute);
+      map.on('draw.delete', removeRoute);
+
+      // Use the coordinates you just drew to make the Map Matching API request
+      function updateRoute() {
+        removeRoute(); // Overwrite any existing layers
+
+        const profile = 'driving'; // Set the profile
+
+        // Get the coordinates
+        const data = draw.getAll();
+        const lastFeature = data.features.length - 1;
+        const coords = data.features[lastFeature].geometry.coordinates;
+
+        // Format the coordinates
+        const newCoords = coords.join(';');
+
+        // Set the radius for each coordinate pair to 25 meters
+        const radius = coords.map(() => 25);
+        getMatch(newCoords, radius, profile);
+      }
+
+      // Make a Map Matching request
+      async function getMatch(coordinates, radius, profile) {
+        // Separate the radiuses with semicolons
+        const radiuses = radius.join(';');
+        // Create the query${coordinates}
+        link = `https://api.mapbox.com/matching/v5/mapbox/${profile}/${coordinates}?geometries=geojson&radiuses=${radiuses}&steps=true&access_token=${mapboxgl.accessToken}`;
+        const query = await fetch(
+          link, //`https://api.mapbox.com/matching/v5/mapbox/${profile}/${coordinates}?geometries=geojson&radiuses=${radiuses}&steps=true&access_token=${mapboxgl.accessToken}`,
+          { method: 'GET' }
+        );
+        console.log(link);
+        const response = await query.json();
+        // Handle errors
+
+        if (response.code !== 'Ok') {
+          alert(
+            `${response.code} - ${response.message}.\n\nFor more information: https://docs.mapbox.com/api/navigation/map-matching/#map-matching-api-errors`
+          );
+          return;
+        }
+        const coords = response.matchings[0].geometry;
+        // Draw the route on the map
+        addRoute(coords);
+        getInstructions(response.matchings[0]);
+      }
+
+      function getInstructions(data) {
+        // Target the sidebar to add the instructions
+        const directions = document.getElementById('directions');
+        let tripDirections = '';
+        // Output the instructions for each step of each leg in the response object
+        for (const leg of data.legs) {
+          const steps = leg.steps;
+          for (const step of steps) {
+            tripDirections += `<li>${step.maneuver.instruction}</li>`;
+          }
+        }
+        directions.innerHTML = `<p><strong>Duração da linha: ${Math.floor(
+          data.duration / 60
+        )} min.</strong></p><ol>${tripDirections}</ol>`;
+      }
+
+      // Draw the Map Matching route as a new layer on the map
+      function addRoute(coords) {
+        // If a route is already loaded, remove it
+        if (map.getSource('route')) {
+          map.removeLayer('route');
+          map.removeSource('route');
+        } else {
+          map.addLayer({
+            'id': 'route',
+            'type': 'line',
+            'source': {
+              'type': 'geojson',
+              'data': {
+                'type': 'Feature',
+                'properties': {},
+                'geometry': coords
+              }
+            },
+            'layout': {
+              'line-join': 'round',
+              'line-cap': 'round'
+            },
+            'paint': {
+              'line-color': '#cadd08',
+              'line-width': 8,
+              'line-opacity': 0.8
+            }
+          });
+        }
+      }
+
+      // If the user clicks the delete draw button, remove the layer if it exists
+      function removeRoute() {
+        if (!map.getSource('route')) return;
+        map.removeLayer('route');
+        map.removeSource('route');
+      }
+}
+        function gravar(){
+
+          var cod = document.getElementById("cod").value;
+          var nome = document.getElementById("nome").value;
+          var url = "";
+
+          url = '../php/inserir_linhas.php?cod=' + cod + '&nome=' + nome + '&link=' + encodeURIComponent(link)
+
+          console.log(link);
+
+          fetch(url)
+                    .then((response) => response.json())
+                    .then((data) => {
+                    msg = data.mensagem;
+                    alert(msg);
+                    $("#cod").val("");
+                    $("#nome").val("");
+                    $("#cord").val("");
+                      removeRoute();
+        })
+
+          }
+          function excluir(){
+            var cod = document.getElementById("cod").value;
+            var nome = document.getElementById("nome").value;
+            url = '../php/exclui_linhas.php?cod=' + cod + '&nome=' + nome
+            
+          fetch(url)
+                    .then((response) => response.json())
+                    .then((data) => {
+                    msg = data.mensagem;
+                    alert(msg);
+                    $("#cod").val("");
+                    $("#nome").val("");
+                    $("#cord").val("");
+        })
+          }
+</script>
+</body>
+<script src="../assets/js/menu.js"></script>
+
+</html>

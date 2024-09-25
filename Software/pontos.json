@@ -1,0 +1,172 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto final Ressaca",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.535635,-23.111252], 
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto casa rosa",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.534865,-23.110926], 
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto escola Terra Brasil",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.534878,-23.113006],  
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto Elefantão",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.535684,-23.115496],  
+        "type": "Point"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto Gril Sul Churrascaria",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.659048,-23.055635],  
+        "type": "Point"
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto Tauá Resort",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.659817,-23.055783],  
+        "type": "Point"
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto Condominio da Represa - Pista",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.636818,-23.078502],  
+        "type": "Point"
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto estrada Condominio Shambala",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.642341,-23.070101],  
+        "type": "Point"
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto Pontilhao (Pedreira)",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.641613,-23.069633],  
+        "type": "Point"
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto SAU (Serviço de atendimento ao usuario)",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.579004,-23.100821], 
+        "type": "Point"
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto Sâo Felipe (Pista)",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.578926,-23.101083],  
+        "type": "Point"
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto Estoril",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.572154,-23.116441],  
+        "type": "Point"
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto Hospital",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.571353,-23.113867],  
+        "type": "Point"
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Ponto Hospital",
+        "description": "Ponto de ônibus"
+      },
+      "geometry": {
+        "coordinates": [-46.568282,-23.103981],  
+        "type": "Point"
+      }
+    }
+
+  ]
+}
+
+

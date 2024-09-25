@@ -1,0 +1,26 @@
+.mobile-menu{
+    right: 0;
+    top: 0;
+    width: 80%;
+    min-height: 100vh;
+    background: #071d29;
+    display: none;
+    transition: all 0.3s;
+    .close-item{
+        position: relative;
+        left: 1rem;
+        width: 100%;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        svg{
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+    >div{
+        flex-direction: column;
+        .nav-link{
+            text-align: center;
+        }
+    }
+}

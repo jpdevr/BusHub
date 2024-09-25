@@ -1,0 +1,195 @@
+.home{
+  .content{
+    width: 100%;
+    padding: 0 2rem;
+    >.row{
+      gap: 20px;
+      flex-wrap: nowrap;
+      width: 100%;
+      @media screen and (max-width: 991px) {
+        .col-md-4.content{
+          flex: auto;
+        }
+      }
+      .col-md-4{
+        width: 33.33% !important;
+        padding: 0 !important;
+      }
+    }
+  }
+  #navbarSupportedContent{
+      width: 70%;
+      @media screen and (min-width: 991px) {
+          width: 30%;
+
+      }
+  }
+
+  .order{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+  }
+  .carrosel.d-flex.row.flex-wrap{
+      img{
+        padding: 2rem;
+          transition: all 0.3s;
+          &:hover{
+              transform: scale(1.1);
+              transition: all 0.3s;
+              
+          }
+
+
+      }
+  }
+  .carrossel{
+      display: flex;
+      flex-wrap: wrap;
+
+
+
+  }
+  .logo-item{
+      background: url(../images/background-home.webp) center no-repeat;
+      background-color: #071d29;
+
+
+      >.content{
+          gap: 34px;
+
+      }
+      .content-top, .content-bottom{
+          background: #071d29;
+
+
+      }
+      width: 50%;
+      img{
+          max-width: 80px;
+          margin-top: 2%;
+
+      }
+  }
+
+  .boxtext{
+      width: 100%;
+      padding: 1px;
+      display: flex;
+      background: #071d29;
+      color: #ffffff;
+      box-sizing: border-box;
+      font-family: "Made Tommy";
+      margin-bottom: 1rem;
+  }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // height: 100vh;
+      font-family: "Arial";
+      gap:16px;
+      background-image: url("tricodando.png")
+    }
+
+
+    .card1, .card2, .card3{
+      background: #ccdb17;
+      width: auto;
+      height: 90px;
+      border-radius: 12px;
+      box-shadow: 4px 4px 12px #aaaa;
+      color: #fff;
+      padding: 8px;
+      text-align: center;
+    } 
+
+    .image{
+      position: relative;
+      margin: 2rem 0;
+      iframe{
+        width: 100%;
+      }
+      &:hover{
+        .text-image{
+          h2{
+            opacity: 1;
+            transition: all 0.5s;
+            transform: translateX(50%);
+            visibility: visible;
+            left: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120%;
+            color: #fff;
+            padding: 2rem;
+
+          }
+        }
+      }
+      .text-image{
+        position: absolute;
+        top: 50%;
+        h2{
+          // position: absolute;
+          color: #fff;
+          font-size: 28px;
+          text-transform: uppercase;
+          opacity: 0;
+          transform: translateX(0%);
+          visibility: hidden;
+          transition: all 0.3s;
+          width: 100%;
+          // width: fit-content;
+          position: relative;
+          left: 0;
+          border-radius: 20px;
+          padding: 2rem;
+        }
+      }
+    }
+    .mapa-content{
+      width: 100%;
+      object-fit: cover;
+      height: 50vh;
+      // position: absolute;
+    }
+
+    }
+    .card div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      height: 50%;
+    }
+    .card h1 {
+      font-size: 1.2rem;
+      margin-top: 14%;
+    }
+    .card h2 {
+      font-size: .9rem;
+      color: #aaaa;
+    }
+
+    h6{
+      margin-left: 5%;
+    }
+
+  p{
+  margin-top: -3%;
+  font-size: 20px;
+  color: white;
+  font-family: "Made Tommy";
+  text-align: justify;
+
+  }
+
+ .txtimg{
+  position: relative;
+ }
+

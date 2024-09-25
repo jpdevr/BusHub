@@ -1,0 +1,126 @@
+.page-admin{
+    header{
+        .col.g-col-6{
+            min-width: 200px !important;
+        }
+        .navbar-nav>.grid{
+            width: 75%;
+        }
+    }
+    .forms-cadastro{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        // flex-wrap: nowrap;
+        @media screen and (max-width: 991px) {
+            flex-direction: column;
+            gap: 10px;
+            .container-left{
+                padding: 0 2rem;
+                width: 100% !important;
+                border-right: none !important;
+                border-bottom: 3px solid #cadd08;
+               
+                .mb-3{
+                    justify-content: space-between;
+                    .col-sm-6{
+                        max-width: 100% !important;
+                        width: 70%;
+                        flex: 0 0 65%;
+                    }
+                    input{
+                        width: 100%;
+                        max-width: 400px;
+                    }
+                }
+            }
+            >.container{
+                width: 100%;
+                padding: 0 2rem;
+                
+            }
+        }
+
+        .container-left{
+            border-right: 3px solid #cadd08;
+            width: 50%;
+        }
+        >.container{
+            width: 50%;
+            .box{
+                height: 85%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+
+                .picture{
+                    // width: 100%;
+
+                    img{
+                        width: 100%;
+                        max-width: 260px;
+                        border: 1px solid #cadd08;
+                    }
+                }
+            }
+            .row{
+                gap: 20px;
+                padding-left: 1rem;
+                justify-content: center;
+            }
+        }
+        
+    }
+    .mail{
+        flex-direction: column;
+    }
+    .register{
+        flex-direction: column;
+    }
+    .label{
+        color: black;
+        font-size: 200%;
+        font-family: "Made Tommy";
+        font-size: 24px;
+    }
+    .coordenadas{
+        flex-direction: column;
+        gap: 15px;
+    }
+    .mb-3{
+        margin-bottom: 0.5rem !important;
+    }
+    .date{
+        flex-direction: column;
+    }
+}
+div#checkboxes{
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    background-color: #071d29;
+    input{
+        margin-right: 0.5rem;
+    }
+}
+form.form-button{
+    display: flex;
+    gap: 18px;
+    button{
+        i{
+            width: 33px;
+        }
+    }
+}
+.form-button-ra{
+    display: flex;
+    flex-direction: column;
+    button{
+        width: 74px;
+        margin: 4px auto;
+        color: #cadd08;
+    }
+
+   
+}

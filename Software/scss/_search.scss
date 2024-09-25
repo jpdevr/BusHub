@@ -1,0 +1,41 @@
+.navbar-nav{
+    width: 100%;
+    >.grid{
+        width: 60%;
+        form{
+            width: 100%;
+            .search-block{
+                width: 100%;
+            }
+        }
+    }
+    .search-block{
+        position: relative;
+    
+        .form-control{
+            width: 100%;
+            padding-left: 2rem !important;
+            padding: 0.3rem;
+            border-radius: 10px;
+            &::placeholder{
+                font-size: 14px;
+                color: #000;
+                background: #fefefe;
+            }
+        }
+        button.btn.btn-success{
+            background: transparent !important;
+            border: none !important;
+            position: absolute;
+            left: 0;
+            top: 6px;
+            box-shadow: none !important;
+            i{
+                transform: rotate(90deg);
+                &::before{
+                    color: gray;
+                }
+            }
+        }
+    }
+}
